@@ -1,0 +1,14 @@
+package pSportsPPE;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ArriveeTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
