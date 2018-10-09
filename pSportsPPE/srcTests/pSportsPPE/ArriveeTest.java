@@ -29,8 +29,12 @@ public class ArriveeTest {
 	
 	@Test
 	public void testConstructeur() {
-		final char CHOIXSPORT = 'F';
-		Arrivee lArrivee2 = new Arrivee(leComplexe, CHOIXSPORT);
+		double DELTA = 0.1;
+		
+		assertEquals(leComplexe, lArrivee.getComplexe());
+		assertEquals('M', lArrivee.getChoixSport());
+		assertEquals(Calendar.getInstance().getTimeInMillis(), lArrivee.getHoraireArrivee(), DELTA);
+		assertEquals(null, lArrivee.gethDep());
 	}
 
 	@Test
@@ -67,13 +71,14 @@ public class ArriveeTest {
 		final String RC = "\n";
 		
 		String leTicket;
+		Calendar heureDep = Calendar.getInstance();
 		
-		Date laDate = getHDep().getTime();
+		Date laDate = heureDep.getTime();
 		SimpleDateFormat leJour = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
 		
 		leTicket = MSGNOMCOMPLEXE + lArrivee.getComplexe().getNomComplexe() + "\t";
-		leTicket += MSGNUMTICKET + ++lArrivee.getNumeroArrivee() + RC;
+		leTicket += MSGNUMTICKET + lArrivee.getNumeroArrivee()+1 + RC;
 		leTicket += MSGDATE + leJour.format(laDate) + RC;
 		leTicket += MSGHEURE + lHeure.format(laDate) + RC;
 		leTicket += MSGMONTANT + lArrivee.getMontant() + "€" + RC;
