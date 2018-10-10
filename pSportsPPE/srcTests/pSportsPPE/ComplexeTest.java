@@ -56,3 +56,5 @@ public class ComplexeTest {
 		assertEquals(4, leComplexe.getNbPlacesRestantesMuscu());
 	}
 }
+
+
