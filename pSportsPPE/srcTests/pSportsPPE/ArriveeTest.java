@@ -16,6 +16,7 @@ public class ArriveeTest {
 
 	private Complexe leComplexe;
 	private Arrivee lArrivee;
+	private long horaireArrivee;
 	
 	@Before
 	public void setUp() {
@@ -25,11 +26,12 @@ public class ArriveeTest {
 		
 		leComplexe = new Complexe(NBTOTALPLACEMUSCU, NBTOTALPLACEFIT, "leComplexe");
 		lArrivee = new Arrivee(leComplexe, CHOIXSPORT);
+		this.horaireArrivee = Calendar.getInstance().getTimeInMillis();
 	}
 	
 	@Test
 	public void testConstructeur() {
-		double DELTA = 0.1;
+		final double DELTA = 0.1;
 		
 		assertEquals(leComplexe, lArrivee.getComplexe());
 		assertEquals('M', lArrivee.getChoixSport());
@@ -48,7 +50,7 @@ public class ArriveeTest {
 		String leBillet;
 		
 		Calendar leCal = Calendar.getInstance();
-		leCal.setTimeInMillis(lArrivee.getHoraireArrivee());
+		leCal.setTimeInMillis(horaireArrivee);
 		Date laDate = leCal.getTime();
 		SimpleDateFormat leJour = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
@@ -71,9 +73,9 @@ public class ArriveeTest {
 		final String RC = "\n";
 		
 		String leTicket;
-		Calendar heureDep = Calendar.getInstance();
+		Calendar heureDepart = Calendar.getInstance();
 		
-		Date laDate = heureDep.getTime();
+		Date laDate = heureDepart.getTime();
 		SimpleDateFormat leJour = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
 		
@@ -85,5 +87,39 @@ public class ArriveeTest {
 		
 		assertEquals(leTicket, lArrivee.afficheTicket());
 	}
+	
+	@Test
+	public void testGetMontant() {
+		double cout = 0;
+		final double DELTA = 1;
+		
+		//test avec l'heure de depart non instanciée
+		assertEquals(cout, lArrivee.getMontant(), DELTA);
+		
+		//test avec l'heure instanciée avec rien
+		Calendar heureDepart = Calendar.getInstance();
+		assertEquals(cout, lArrivee.getMontant(), DELTA);
+		
+		//test avec 23 min de durée
+		cout = 0.5;
+		assertEquals(cout, lArrivee.getMontant(), DELTA);
+	}
+	
+	@Test
+	public void testGetters() {
+		final double DELTA = 1;
+		
+		assertEquals(leComplexe, lArrivee.getComplexe());
+		assertEquals('M', lArrivee.getChoixSport());
+		assertEquals(Calendar.getInstance().getTimeInMillis(), lArrivee.getHoraireArrivee(), DELTA);
+		assertEquals(null, lArrivee.gethDep());
+		assertEquals(1, lArrivee.getNumeroArrivee());
+		assertEquals(1, lArrivee.getNumeroSortie());
+		
+		lArrivee.setNumeroArrivee(3);
+		assertEquals(3, lArrivee.getNumeroArrivee(), DELTA);
+	}
+	
+	
 	
 }
