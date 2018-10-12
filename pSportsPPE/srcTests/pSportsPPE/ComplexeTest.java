@@ -21,7 +21,6 @@ public class ComplexeTest {
 	private Complexe leComplexe;
 	private Arrivee lArrivee;
 	private Arrivee lArrivee2;
-	private ArrayList<Arrivee> lesArrivees;
 
 	@Before
 	public void setUp() {
@@ -33,7 +32,9 @@ public class ComplexeTest {
 		leComplexe = new Complexe(NBTOTALPLACEMUSCU, NBTOTALPLACEFIT, "leComplexe");
 		lArrivee = new Arrivee(leComplexe, MUSCU);
 		lArrivee2 = new Arrivee(leComplexe, FIT);
-		List<Arrivee> lesArrivees = new ArrayList<Arrivee>();
+		
+		leComplexe.entreeUsager(lArrivee);
+		leComplexe.entreeUsager(lArrivee2);
 		
 	}
 
@@ -43,6 +44,8 @@ public class ComplexeTest {
 		final int NBTOTALPLACEFIT = 5;
 		Complexe leComplexe = new Complexe(NBTOTALPLACEMUSCU, NBTOTALPLACEFIT , "leComplexe");
 		assertEquals("leComplexe", leComplexe.getNomComplexe());
+		assertEquals()
+		
 	}
 	
 	@Test
@@ -53,18 +56,16 @@ public class ComplexeTest {
 	
 	@Test
 	public void testSortieUsager() {
-		assertEquals(true, leComplexe.entreeUsager(lArrivee));
-		assertEquals(true, leComplexe.entreeUsager(lArrivee2));
 		assertEquals(lArrivee, leComplexe.sortieUsager(1));
 		assertEquals(lArrivee2, leComplexe.sortieUsager(2));
 	}
 	
 	@Test
 	public void testPlace() {
-		assertEquals(0, leComplexe.getNbPlacesOccupeesFit());
-		assertEquals(0, leComplexe.getNbPlacesOccupeesMuscu());
-		assertEquals(5, leComplexe.getNbPlacesRestantesFit());
-		assertEquals(4, leComplexe.getNbPlacesRestantesMuscu());
+		assertEquals(1, leComplexe.getNbPlacesOccupeesFit());
+		assertEquals(1, leComplexe.getNbPlacesOccupeesMuscu());
+		assertEquals(4, leComplexe.getNbPlacesRestantesFit());
+		assertEquals(3, leComplexe.getNbPlacesRestantesMuscu());
 	}
 	
 	@Test
@@ -93,16 +94,19 @@ public class ComplexeTest {
 		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
 		lesInfos += MSGHEURE + lHeure.format(laDate) + "\n";
 
-		lesInfos += MSGDISPMUSCU + leComplexe.getNbPlacesRestantesMuscu() + "\t";
-		lesInfos += MSGOCCMUSCU + leComplexe.getNbPlacesOccupeesMuscu() + "\t";
-		lesInfos += MSGTXMUSCU + df2.format(leComplexe.etatMuscu()).toString() + "\t";
-		ChoixCouleur choixCouleur = new ChoixCouleur(leComplexe.etatFit());
-		lesInfos += MSGCOULMUSCU + (choixCouleur.getCouleur().toString()) + "\n";
+		lesInfos += MSGDISPMUSCU + "3" + "\t";
+		lesInfos += MSGOCCMUSCU + "1" + "\t";
+		lesInfos += MSGTXMUSCU + df2.format(1*1.0/4) + "\t";
+		lesInfos += MSGCOULMUSCU + "vert" + "\n";
 
-		lesInfos += MSGDISPFIT + this.getNbPlacesRestantesFit() + "\t";
-		lesInfos += MSGOCCFIT + this.nbPlacesOccupeesFit + "\t";
-		lesInfos += MSGTXFIT + df2.format(this.etatFit()) + "\t";
-		lesInfos += MSGCOULFIT + this.couleurFit() + "\n\n";
+		lesInfos += MSGDISPFIT + "4" + "\t";
+		lesInfos += MSGOCCFIT + "1" + "\t";
+		lesInfos += MSGTXFIT + df2.format(1*1.0/5) + "\t";
+		lesInfos += MSGCOULFIT + "vert" + "\n\n";
+		
+		lesInfos += MSGBAS + "\n\n";
+		
+		assertEquals(lesInfos, leComplexe.lesInfos());
 	}
 }
 
