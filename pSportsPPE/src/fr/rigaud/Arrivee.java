@@ -32,7 +32,7 @@ public class Arrivee {
 
 	public String afficheBillet() {
 		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Billet d'entrÃ©e nÂ° : ";
+		final String MSGNUM = "Billet d'entrée n° : ";
 		final String MSGDATE = "Date : ";
 		final String MSGHEURE = "Heure : ";
 
@@ -53,7 +53,7 @@ public class Arrivee {
 
 	public String afficheTicket() {
 		final String MSGNOM = "Complexe ";
-		final String MSGNUM = "Ticket de sortie nÂ° : ";
+		final String MSGNUM = "Ticket de sortie n° : ";
 		final String MSGDATE = "Date : ";
 		final String MSGHEURE = "Heure : ";
 		final String MSGCOUT = "Montant : ";
@@ -74,7 +74,7 @@ public class Arrivee {
 		leTicket += MSGDATE + leJour.format(laDate) + "\n";
 		SimpleDateFormat lHeure = new SimpleDateFormat("HH:mm");
 		leTicket += MSGHEURE + lHeure.format(laDate) + "\n";
-		leTicket += MSGCOUT + this.getMontant() + " â‚¬\n";
+		leTicket += MSGCOUT + this.getMontant() + " €\n";
 
 		return leTicket;
 	}
@@ -98,7 +98,7 @@ public class Arrivee {
 					// cout fixe d'une heure
 					cout = 1;
 					duree -= 60;
-					// + tous les 1/4 h commencÃ©s
+					// + tous les 1/4 h commencés
 					long nbquarts, reste;
 					nbquarts = duree / 15;
 					reste = duree % 15;
