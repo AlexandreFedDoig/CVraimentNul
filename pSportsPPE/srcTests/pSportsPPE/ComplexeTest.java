@@ -43,9 +43,7 @@ public class ComplexeTest {
 		final int NBTOTALPLACEMUSCU = 4;
 		final int NBTOTALPLACEFIT = 5;
 		Complexe leComplexe = new Complexe(NBTOTALPLACEMUSCU, NBTOTALPLACEFIT , "leComplexe");
-		assertEquals("leComplexe", leComplexe.getNomComplexe());
-		assertEquals()
-		
+		assertEquals("leComplexe", leComplexe.getNomComplexe());		
 	}
 	
 	@Test
